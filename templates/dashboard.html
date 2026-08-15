@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html dir="rtl">
+<head><meta charset="UTF-8"><title>ADKA OMNI v172.0</title>
+<style>
+    body { background:#010205; color:#e2e8f0; font-family:sans-serif; padding:10px; text-align:center; }
+    .header { border: 2px solid #c9a84c; padding:15px; border-radius:15px; background:linear-gradient(180deg, #0f172a, #000); }
+    .radar { background:#001a1a; border:1px solid #00ffcc; padding:10px; border-radius:10px; margin:10px 0; color:#00ffcc; font-weight:bold; }
+    .grid { display:grid; grid-template-columns: repeat(6, 1fr); gap:6px; margin-top:15px; }
+    .expert-card { background:#0c1220; border:1px solid #1e2f45; padding:8px; border-radius:10px; cursor:pointer; font-size:0.6rem; }
+    .expert-card:hover { border-color:#00ffcc; transform:scale(1.05); }
+    .console { background:black; border:1px solid #c9a84c; border-right:5px solid #00ffcc; padding:15px; margin-top:15px; color:#34d399; font-family:monospace; white-space:pre-wrap; text-align:right; font-size:0.8rem; }
+    textarea { width:100%; background:#050a14; border:1px solid #1e2f45; color:white; padding:10px; border-radius:8px; margin-top:10px; }
+    button { width:100%; padding:12px; background:#c9a84c; color:black; border:none; font-weight:bold; cursor:pointer; border-radius:8px; margin-top:5px; }
+</style></head>
+<body>
+    <div class="header">
+        <h1 style="margin:0; font-size:1.2rem;">🏛️ نُواة الاندماج v172 | السيادة الكلية 🔱</h1>
+        <p style="font-size:0.7rem;">القائد: هشام موبيل | 🏦 Attijariwafa Bank Connected</p>
+    </div>
+    <div class="radar">📡 رادار الحقيقة: 172.77 ETH = {{ market.total }} MAD ({{ market.status }})</div>
+    <div class="grid">
+        {% for e in experts %}
+        <div class="expert-card" onclick="document.getElementById('exp').value='{{ e.name }}'; alert('ربط {{ e.name }}')">
+            <div style="font-size:1.2rem;">{{ e.icon }}</div>
+            <strong>{{ e.name }}</strong>
+        </div>
+        {% endfor %}
+    </div>
+    <form method="post">
+        <input type="hidden" name="expert_name" id="exp">
+        <textarea name="user_query" rows="2" placeholder="وجه أمراً تنفيذياً موحداً..."></textarea>
+        <button type="submit">إطلاق الإرادة v172.0 🚀</button>
+    </form>
+    {% if expert_res %}
+    <div class="console"><strong>[مخرجات السيادة]:</strong><br>{{ expert_res }}</div>
+    <script>
+        const msg = new SpeechSynthesisUtterance(`{{ expert_res }}`);
+        msg.lang = 'ar-SA';
+        window.speechSynthesis.speak(msg);
+    </script>
+    {% endif %}
+</body></html>
