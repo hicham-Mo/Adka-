@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>نور الاستخلاف</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <span class="logo">🏛️</span>
+      <h1>نور الاستخلاف</h1>
+    </div>
+    <div class="status-box">
+      <span id="connDot" class="dot offline"></span>
+      <span id="connLabel">غير متصل</span>
+    </div>
+  </header>
+
+  <nav class="tabs">
+    <button class="tab active" data-view="dashboard" type="button">🧭 لوحة القيادة</button>
+    <button class="tab" data-view="settings" type="button">⚙️ الإعدادات</button>
+    <button class="tab" data-view="log" type="button">🗂️ السجل</button>
+  </nav>
+
+  <main class="container">
+    <section class="view active" id="dashboard">
+      <div class="stats">
+        <div class="chip"><strong id="statCalls">0</strong><span>استدعاءات</span></div>
+        <div class="chip"><strong id="statOk">0</strong><span>نجحت</span></div>
+        <div class="chip"><strong id="statFail">0</strong><span>فشلت</span></div>
+      </div>
+
+      <div class="card">
+        <label>البحث عن خبير</label>
+        <input id="expertSearch" type="text" placeholder="🔍 ابحث عن خبير..." />
+
+        <div id="expertsGrid" class="experts-grid"></div>
+        <div id="selectedLabel" class="selected-label">اختر خبيرًا أو اترك الاختيار فارغًا</div>
+
+        <label>السؤال أو الأمر</label>
+        <textarea id="promptInput" placeholder="اكتب أمرك أو سؤالك هنا..."></textarea>
+
+        <button id="launchBtn" class="primary-btn" type="button">🚀 إطلاق الأمر</button>
+      </div>
+
+      <div id="resultsArea" class="results"></div>
+    </section>
+
+    <section class="view" id="settings">
+      <div class="card">
+        <h3>🔌 إعدادات الخادم</h3>
+        <label>رابط الخادم</label>
+        <input id="gatewayUrlInput" type="url" value="http://127.0.0.1:8000" />
+        <label>مسار نقطة النهاية</label>
+        <input id="gatewayPathInput" type="text" value="/api/query" />
+        <div class="row">
+          <button id="testConnBtn" class="secondary-btn" type="button">📡 فحص الاتصال</button>
+          <button id="saveConnBtn" class="primary-btn small" type="button">💾 حفظ</button>
+        </div>
+        <p id="settingsHint" class="hint">سيفحص الاتصال بالخادم عند حفظ الإعدادات.</p>
+      </div>
+    </section>
+
+    <section class="view" id="log">
+      <div class="card">
+        <h3>سجل الاستدعاءات</h3>
+        <div id="logContent" class="log-content">لا توجد استدعاءات مسجلة.</div>
+      </div>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
